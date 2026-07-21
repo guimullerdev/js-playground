@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Intersection Observer PoC</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0 2rem;
+    }
+    .spacer {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+    }
+    .box {
+      height: 200px;
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: #eee;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .box.visible {
+      opacity: 1;
+      transform: translateY(0);
+      background: #a8e6a1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Intersection Observer PoC</h1>
+  <p>Scroll down. Each box fades in and logs to the console when it enters the viewport.</p>
+  <div class="spacer">scroll down ↓</div>
+  <div class="box" data-id="1">Box 1</div>
+  <div class="box" data-id="2">Box 2</div>
+  <div class="box" data-id="3">Box 3</div>
+  <div class="box" data-id="4">Box 4</div>
+  <div class="box" data-id="5">Box 5</div>
+  <div class="spacer">end</div>
+  <script src="index.js"></script>
+</body>
+</html>
