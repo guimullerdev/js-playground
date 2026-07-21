@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Drag and Drop PoC</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+    }
+    .board {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .column {
+      flex: 1;
+      background: #f4f4f4;
+      border-radius: 8px;
+      padding: 1rem;
+      min-height: 300px;
+    }
+    .column h2 {
+      font-size: 1rem;
+      margin-top: 0;
+    }
+    .column.drag-over {
+      background: #dcefff;
+      outline: 2px dashed #5b9bd5;
+    }
+    .card {
+      background: white;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      cursor: grab;
+    }
+    .card.dragging {
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Drag and Drop PoC</h1>
+  <p>Drag cards between columns. Check the console for drag lifecycle events.</p>
+  <div class="board">
+    <div class="column" data-column="todo">
+      <h2>To Do</h2>
+      <div class="card" draggable="true" data-id="1">Write PoC</div>
+      <div class="card" draggable="true" data-id="2">Review PR</div>
+    </div>
+    <div class="column" data-column="doing">
+      <h2>Doing</h2>
+      <div class="card" draggable="true" data-id="3">Fix bug</div>
+    </div>
+    <div class="column" data-column="done">
+      <h2>Done</h2>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
