@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Canvas API PoC</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+    }
+    canvas {
+      border: 2px solid #5b9bd5;
+      border-radius: 8px;
+      background: #111;
+      display: block;
+      cursor: crosshair;
+    }
+    button {
+      margin: 1rem 0.5rem 0 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Canvas API PoC</h1>
+  <p>Click and drag on the canvas to spawn bouncing particles at the cursor.</p>
+  <button id="clear">Clear</button>
+  <canvas id="canvas" width="600" height="400"></canvas>
+  <script src="index.js"></script>
+</body>
+</html>
