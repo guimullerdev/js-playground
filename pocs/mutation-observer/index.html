@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mutation Observer PoC</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+    }
+    #target {
+      border: 2px solid #5b9bd5;
+      border-radius: 8px;
+      padding: 1rem;
+      min-height: 100px;
+    }
+    #target.highlighted {
+      background: #fff3cd;
+    }
+    button {
+      margin: 0.25rem 0.5rem 1rem 0;
+    }
+    #log {
+      margin-top: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      background: #f4f4f4;
+      border-radius: 6px;
+      padding: 1rem;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mutation Observer PoC</h1>
+  <p>Use the buttons to mutate the box below. Each change is logged by a <code>MutationObserver</code> watching it.</p>
+
+  <button id="add-child">Add child</button>
+  <button id="remove-child">Remove child</button>
+  <button id="toggle-class">Toggle highlight class</button>
+  <button id="edit-text">Edit text</button>
+
+  <div id="target">Watched element</div>
+
+  <div id="log"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>
