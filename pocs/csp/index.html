@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'" />
+  <title>CSP PoC</title>
+
+  <!-- Loaded first (allowed by script-src 'self') so its securitypolicyviolation
+       listener is registered before the blocked resources below are parsed. -->
+  <script src="index.js"></script>
+</head>
+<body>
+  <h1>CSP PoC</h1>
+  <p>Open the browser console to see the output.</p>
+
+  <!-- Blocked: inline script violates script-src 'self' -->
+  <script>
+    console.log('inline script ran (this should NOT appear, CSP should block it)');
+  </script>
+
+  <!-- Blocked: external script violates script-src 'self' -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Blocked: external image violates img-src 'self' -->
+  <img src="https://via.placeholder.com/1" alt="" />
+</body>
+</html>
