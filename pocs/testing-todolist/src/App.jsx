@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addTodo, toggleTodo, deleteTodo, countRemaining } from './todoLogic.js';
 
 let nextId = 1;
 
@@ -6,31 +7,27 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState('');
 
-  function addTodo(event) {
+  function handleAdd(event) {
     event.preventDefault();
-    const trimmed = text.trim();
-    if (!trimmed) return;
-    setTodos((prev) => [...prev, { id: nextId++, text: trimmed, done: false }]);
+    setTodos((prev) => addTodo(prev, text, nextId++));
     setText('');
   }
 
-  function toggleTodo(id) {
-    setTodos((prev) =>
-      prev.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo))
-    );
+  function handleToggle(id) {
+    setTodos((prev) => toggleTodo(prev, id));
   }
 
-  function deleteTodo(id) {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  function handleDelete(id) {
+    setTodos((prev) => deleteTodo(prev, id));
   }
 
-  const remaining = todos.filter((todo) => !todo.done).length;
+  const remaining = countRemaining(todos);
 
   return (
     <main>
       <h1>Todo List</h1>
 
-      <form onSubmit={addTodo}>
+      <form onSubmit={handleAdd}>
         <label htmlFor="todo-input">New todo</label>
         <input
           id="todo-input"
@@ -49,13 +46,13 @@ export default function App() {
               <input
                 type="checkbox"
                 checked={todo.done}
-                onChange={() => toggleTodo(todo.id)}
+                onChange={() => handleToggle(todo.id)}
               />
               <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
                 {todo.text}
               </span>
             </label>
-            <button type="button" onClick={() => deleteTodo(todo.id)} aria-label={`Delete ${todo.text}`}>
+            <button type="button" onClick={() => handleDelete(todo.id)} aria-label={`Delete ${todo.text}`}>
               Delete
             </button>
           </li>

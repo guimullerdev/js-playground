@@ -6,6 +6,7 @@ A minimal Todo List app used to study different testing tools/libraries against 
 
 - `index.html` / `src/main.jsx` — Vite entry point.
 - `src/App.jsx` — the Todo List component: add a todo, toggle it as done, delete it, shows a remaining-items count.
+- `src/todoLogic.js` — pure functions (`addTodo`, `toggleTodo`, `deleteTodo`, `countRemaining`) used by `App.jsx`, kept separate so they can be unit tested without rendering the component.
 
 Run the app:
 
@@ -22,7 +23,14 @@ Component tests written with [React Testing Library](https://testing-library.com
 - Test file: `src/react-testing-library/App.test.jsx`
 - Covers: initial empty state, adding a todo, ignoring empty input, toggling done, deleting a todo.
 
-Run it:
+## Tests (Jest, no DOM)
+
+Plain [Jest](https://jestjs.io/) unit tests against the pure functions in `src/todoLogic.js` — no rendering, no DOM, just input/output assertions on the todo logic itself.
+
+- Test file: `src/jest/todoLogic.test.js`
+- Covers: adding (including trimming/ignoring empty text), toggling, deleting, counting remaining todos, and that functions don't mutate their input.
+
+Run all tests (both suites above run together):
 
 ```bash
 yarn test
