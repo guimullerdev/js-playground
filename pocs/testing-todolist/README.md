@@ -36,6 +36,25 @@ Run all tests (both suites above run together):
 yarn test
 ```
 
+## Tests (Cypress, end-to-end)
+
+[Cypress](https://www.cypress.io/) tests that drive the real app in a browser against the running Vite dev server, clicking and typing like a user instead of calling React directly.
+
+- Test file: `src/cypress/e2e/todo.cy.js`
+- Covers the same flows as the RTL suite: initial empty state, adding a todo, ignoring empty input, toggling done, deleting a todo.
+
+Run it headless (starts the dev server, runs the specs, then shuts it down):
+
+```bash
+yarn test:e2e
+```
+
+Or interactively, against a dev server you already have running (`yarn dev`):
+
+```bash
+yarn cy:open
+```
+
 ## Notes
 
 - This poc uses Vite (dev server) + Jest/Babel (test runner) since RTL/Jest need a JSX build step, unlike the other zero-build pocs in this repo.
