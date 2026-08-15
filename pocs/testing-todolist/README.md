@@ -55,6 +55,19 @@ Or interactively, against a dev server you already have running (`yarn dev`):
 yarn cy:open
 ```
 
+## Tests (Playwright, end-to-end)
+
+[Playwright](https://playwright.dev/) tests covering the same flows as the Cypress suite, to compare the two end-to-end tools. The dev server is started automatically via Playwright's `webServer` config.
+
+- Test file: `src/playwright/todo.spec.js`
+- Covers: initial empty state, adding a todo, ignoring empty input, toggling done, deleting a todo.
+
+Run it:
+
+```bash
+yarn pw:test
+```
+
 ## Notes
 
 - This poc uses Vite (dev server) + Jest/Babel (test runner) since RTL/Jest need a JSX build step, unlike the other zero-build pocs in this repo.
