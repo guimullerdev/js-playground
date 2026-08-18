@@ -68,6 +68,26 @@ Run it:
 yarn pw:test
 ```
 
+## Comparison
+
+All four suites test the same five behaviors (empty state, add, ignore empty input, toggle, delete) against the same `App.jsx`. Ran on 2026-08-17, all 24 tests passing.
+
+| | React Testing Library | Jest (logic only) | Cypress | Playwright |
+|---|---|---|---|---|
+| What it tests | Rendered component (jsdom) | Pure functions, no DOM | Real browser, real app | Real browser, real app |
+| Runner | Jest | Jest | Own runner | Own runner |
+| Needs dev server | No | No | Yes | Yes |
+| Server startup | — | — | Manual (`start-server-and-test`) | Built into config (`webServer`) |
+| Wall time (this run) | ~1.6s (shared with Jest suite) | included above | ~12.6s incl. server boot | ~4.5s incl. server boot |
+| Test count | 5 | 9 | 5 | 5 |
+
+Notes from actually building this:
+
+- **Jest test-file collision**: Jest's default `testMatch` picks up any `*.spec.js`, which includes Playwright's `todo.spec.js`. Had to pin `jest.config.js` to `testMatch: ['<rootDir>/src/**/*.test.[jt]s?(x)']` so `yarn test` doesn't also try (and fail) to run Playwright specs.
+- **Accessible-name matching differs**: RTL and Playwright both resolve a button's accessible name from `aria-label` (so `getByRole('button', { name: 'Delete Buy milk' })` works even though the visible text is just "Delete"). Cypress's `cy.contains('button', ...)` matches visible text only, so the Cypress spec had to fall back to `cy.get('button[aria-label="..."]')`. This is the most concrete practical gap between the tools, not just a style difference.
+- **Server orchestration**: Playwright's `webServer` config starts and waits for the dev server itself. Cypress has no equivalent built in, so `test:e2e` depends on the extra `start-server-and-test` package. That's most of the Cypress run's extra wall time (server boot) — the actual test execution is comparable (~1-2s either way).
+- **RTL vs. Jest-only**: RTL tests catch wiring bugs (does the button actually call the handler, does the DOM update) that the pure-logic Jest tests can't, since those never touch a component. The Jest-only suite is faster and more precise for the *logic* itself (trimming, immutability), but gives zero confidence the UI is wired correctly.
+
 ## Notes
 
 - This poc uses Vite (dev server) + Jest/Babel (test runner) since RTL/Jest need a JSX build step, unlike the other zero-build pocs in this repo.
