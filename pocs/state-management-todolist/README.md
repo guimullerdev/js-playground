@@ -10,13 +10,27 @@ This is the reference implementation: state lives in the component via `useState
 - `src/App.jsx` — the Todo List component: add a todo, toggle it as done, delete it, shows a remaining-items count.
 - `src/todoLogic.js` — pure functions (`addTodo`, `toggleTodo`, `deleteTodo`, `countRemaining`) used by `App.jsx`, kept separate so the same logic can be reused/adapted by the other versions.
 
-Run the app:
+## Redux
+
+[Redux Toolkit](https://redux-toolkit.js.org/) version: a `todosSlice` (`createSlice`) owns the `todos` array, actions are dispatched from the component via `react-redux`'s `useDispatch`/`useSelector`, and the reducers/selector reuse the same `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` functions from `src/todoLogic.js`.
+
+- `src/redux/store.js` — `todosSlice` + `configureStore`.
+- `src/redux/App.jsx` — the Todo List component, wired to the store instead of local `useState`.
+- `src/redux/main.jsx` — entry point, wraps `App` in `<Provider store={store}>`.
+
+## Running it
 
 ```bash
 cd pocs/state-management-todolist
 yarn install
 yarn dev
 ```
+
+Then open:
+
+- `/` — landing page linking to every version.
+- `/baseline.html` — plain React `useState`.
+- `/redux.html` — Redux (Redux Toolkit).
 
 ## Notes
 

@@ -26,12 +26,13 @@ Single Vite + React app (like `testing-todolist`), one folder per library under 
 
 Each folder owns its own state wiring (store/reducer/atoms/machine) and its own `App.jsx`. A top-level landing page links out to each implementation (multi-entry Vite pages, e.g. `redux.html`, `zustand.html`, ... each loading `src/<lib>/main.jsx`), so all versions run off a single `yarn dev`.
 
-## Day 1 — Redux
+## Day 1 — Redux (done)
 
 [Redux](https://redux.js.org/) (with Redux Toolkit) — the classic flux-style store: actions, a reducer, `configureStore`, connected via `react-redux`'s `useSelector`/`useDispatch`.
 
 - Folder: `src/redux/`
-- Covers: baseline spec via a `todosSlice` (RTK) dispatched from the component.
+- Entry: `redux.html` → `src/redux/main.jsx`
+- Covers: baseline spec via a `todosSlice` (RTK) dispatched from the component, reusing `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` from `src/todoLogic.js` inside the reducers/selector.
 
 ## Day 2 — Context API
 
