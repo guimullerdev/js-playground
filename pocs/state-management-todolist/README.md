@@ -18,6 +18,14 @@ This is the reference implementation: state lives in the component via `useState
 - `src/redux/App.jsx` — the Todo List component, wired to the store instead of local `useState`.
 - `src/redux/main.jsx` — entry point, wraps `App` in `<Provider store={store}>`.
 
+## Context API
+
+React's built-in [Context API](https://react.dev/reference/react/createContext) + `useReducer`, no external dependency. State and dispatch are split into two contexts (`TodosStateContext`/`TodosDispatchContext`) so components that only dispatch don't re-render on every state change; the reducer reuses the same `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` functions from `src/todoLogic.js`.
+
+- `src/context-api/TodosContext.jsx` — `todosReducer` + `TodosProvider` + `useTodosState`/`useTodosDispatch` hooks.
+- `src/context-api/App.jsx` — the Todo List component, reading/dispatching via the hooks instead of local `useState`.
+- `src/context-api/main.jsx` — entry point, wraps `App` in `<TodosProvider>`.
+
 ## Running it
 
 ```bash
@@ -31,6 +39,7 @@ Then open:
 - `/` — landing page linking to every version.
 - `/baseline.html` — plain React `useState`.
 - `/redux.html` — Redux (Redux Toolkit).
+- `/context-api.html` — React Context API + `useReducer`.
 
 ## Notes
 

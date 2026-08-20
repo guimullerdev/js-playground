@@ -10,6 +10,7 @@ export default defineConfig({
         index: resolve(__dirname, 'index.html'),
         baseline: resolve(__dirname, 'baseline.html'),
         redux: resolve(__dirname, 'redux.html'),
+        contextApi: resolve(__dirname, 'context-api.html'),
       },
     },
   },

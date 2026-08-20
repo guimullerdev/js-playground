@@ -34,12 +34,13 @@ Each folder owns its own state wiring (store/reducer/atoms/machine) and its own 
 - Entry: `redux.html` → `src/redux/main.jsx`
 - Covers: baseline spec via a `todosSlice` (RTK) dispatched from the component, reusing `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` from `src/todoLogic.js` inside the reducers/selector.
 
-## Day 2 — Context API
+## Day 2 — Context API (done)
 
 React's built-in [Context API](https://react.dev/reference/react/createContext) + `useReducer` — no external dependency, state lives in a provider component wrapping the tree.
 
 - Folder: `src/context-api/`
-- Covers: baseline spec via a `TodosProvider`/`useTodos` hook.
+- Entry: `context-api.html` → `src/context-api/main.jsx`
+- Covers: baseline spec via a `TodosProvider` (state + dispatch split into two contexts) and `useTodosState`/`useTodosDispatch` hooks, reusing `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` from `src/todoLogic.js` inside the reducer/selector.
 
 ## Day 3 — MobX
 
