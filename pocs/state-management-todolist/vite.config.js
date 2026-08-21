@@ -11,6 +11,7 @@ export default defineConfig({
         baseline: resolve(__dirname, 'baseline.html'),
         redux: resolve(__dirname, 'redux.html'),
         contextApi: resolve(__dirname, 'context-api.html'),
+        mobx: resolve(__dirname, 'mobx.html'),
       },
     },
   },

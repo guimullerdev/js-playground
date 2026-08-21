@@ -42,12 +42,13 @@ React's built-in [Context API](https://react.dev/reference/react/createContext) 
 - Entry: `context-api.html` → `src/context-api/main.jsx`
 - Covers: baseline spec via a `TodosProvider` (state + dispatch split into two contexts) and `useTodosState`/`useTodosDispatch` hooks, reusing `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` from `src/todoLogic.js` inside the reducer/selector.
 
-## Day 3 — MobX
+## Day 3 — MobX (done)
 
 [MobX](https://mobx.js.org/) — observable state with actions, wired to React via `mobx-react-lite`'s `observer`.
 
 - Folder: `src/mobx/`
-- Covers: baseline spec via an observable `TodoStore` class.
+- Entry: `mobx.html` → `src/mobx/main.jsx`
+- Covers: baseline spec via an observable `TodoStore` class (`makeAutoObservable`, singleton instance, no provider needed), reusing `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` from `src/todoLogic.js` inside its actions/computed.
 
 ## Day 4 — Zustand
 

@@ -26,6 +26,14 @@ React's built-in [Context API](https://react.dev/reference/react/createContext) 
 - `src/context-api/App.jsx` — the Todo List component, reading/dispatching via the hooks instead of local `useState`.
 - `src/context-api/main.jsx` — entry point, wraps `App` in `<TodosProvider>`.
 
+## MobX
+
+[MobX](https://mobx.js.org/) version: a `TodoStore` class holds an observable `todos` array plus a `remaining` computed, mutated via plain methods (`add`/`toggle`/`remove`) that delegate to the same `addTodo`/`toggleTodo`/`deleteTodo`/`countRemaining` functions from `src/todoLogic.js`. It's a plain singleton instance — no context/provider needed — and the component subscribes to it by being wrapped in `mobx-react-lite`'s `observer`.
+
+- `src/mobx/TodoStore.js` — `TodoStore` class (`makeAutoObservable`) + exported `todoStore` singleton.
+- `src/mobx/App.jsx` — the Todo List component, wrapped in `observer`, reading/calling `todoStore` directly.
+- `src/mobx/main.jsx` — entry point, renders `App` with no provider.
+
 ## Running it
 
 ```bash
@@ -40,6 +48,7 @@ Then open:
 - `/baseline.html` — plain React `useState`.
 - `/redux.html` — Redux (Redux Toolkit).
 - `/context-api.html` — React Context API + `useReducer`.
+- `/mobx.html` — MobX.
 
 ## Notes
 
